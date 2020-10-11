@@ -1,0 +1,36 @@
+﻿@model List<Booking>
+
+<h1>Available Bookings</h1>
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Barber</th>
+            <th scope="col">Time</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+        }
+
+        @foreach (var item in Model)
+        {
+            ++i;
+            <tr>
+                <th scope="row">@i</th>
+                <td>@item.Barber.Name</td>
+                <td>@item.AvailableTime.ToString()</td>
+                <td>@item.BookingStatus.ToString()</td>
+                <td>
+                    <a asp-controller="Booking"
+                       asp-action="Info"
+                       asp-route-barber="@(i-1)" role="button">more info</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
