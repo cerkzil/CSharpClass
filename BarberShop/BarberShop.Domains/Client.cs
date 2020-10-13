@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BarberShop.Models
+namespace BarberShop.Domains
 {
-    public class Barber : Person
+    public class Client : Person
     {
-        public Barber()
+        public Client()
         {
             Id = Guid.NewGuid();
         }

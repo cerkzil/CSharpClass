@@ -2,3 +2,11 @@
     ViewBag.Title = "Gifts";
 }
 <h1>Gifts</h1>
+<div id="myData">
+</div>
+<script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+    $.get("/api/values/", function (data){
+        $('#myData').html(data);
+    });
+</script>

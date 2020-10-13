@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BarberShop.Models
+namespace BarberShop.Domains
 {
     public abstract class Person
     {
