@@ -12,7 +12,7 @@ namespace Skaitykla.EF
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer("Server=KAB215-05\\" +
+            optionBuilder.UseSqlServer("Server=DESKTOP-BBFEDD6\\" +
                                        "SQLEXPRESS\\\\" +
                                        "MSSQLLocalDB;" +
                                        "Database=_KITM;" +

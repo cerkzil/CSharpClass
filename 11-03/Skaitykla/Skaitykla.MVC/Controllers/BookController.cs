@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.Language;
 using Skaitykla.Domains;
+using Skaitykla.EF;
 using Skaitykla.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -11,21 +13,26 @@ namespace Skaitykla.MVC.Controllers
 {
     public class BookController : Controller
     {
+        private readonly BookContext _db;
+
+        public BookController(BookContext db)
+        {
+            _db = db;
+        }
+
+
         public IActionResult Index()
         {
-            return View();
+            var manoKnygos = _db.Books.ToList();
+            return View(manoKnygos);
         }
 
         [HttpGet]
         public IActionResult NewBook()
         {
-            var myAuthorList = new List<Author>() {
-                    new Author("Stephen", "King"),
-                    new Author("Salomeja", "Neris")
-            };
+            var authorList = _db.Authors.ToList();
 
-
-            return View(myAuthorList);
+            return View(authorList);
         }
 
 
@@ -34,21 +41,20 @@ namespace Skaitykla.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.AuthError = "ivyko klaida";
-                return RedirectToAction("Index", "Auath");
+                ViewBag.AuthError = "Something went wrong";
+                return RedirectToAction("Index", "Auth");
             }
 
             var myNewBook = new Book
             {
                 Title = model.Title,
-                // Author = _db.authors.where(Author => )
+                Author = _db.Authors.Where(x => x.Id == model.AuthorId).Single()
 
             };
 
+            _db.Books.Add(myNewBook);
+            _db.SaveChanges();
 
-
-
-            //Db.Save();
             return RedirectToAction("NewBook");
         }
     }

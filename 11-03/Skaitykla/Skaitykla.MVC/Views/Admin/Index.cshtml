@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h2>Admin page</h2>
+
+<ul class="nav flex-column">
+    <li class="nav-item">
+        <a class="nav-link" asp-action="NewBook" asp-controller="Book">Add Book</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-action="Index" asp-controller="Book">All Books</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-action="Index" asp-controller="Author">Edit Authors</a>
+    </li>
+</ul>
