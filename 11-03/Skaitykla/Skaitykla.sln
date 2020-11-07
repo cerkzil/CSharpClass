@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skaitykla.MVC", "Skaitykla.MVC\Skaitykla.MVC.csproj", "{54CCED6F-605A-4E5B-89FF-8991C0FE8F20}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domains", "Domains", "{E1FC5A12-82B4-491E-B28C-C0E42AAA6339}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skaitykla.Domains", "Skaitykla.Domains\Skaitykla.Domains.csproj", "{B8208355-89B0-45EC-BA78-2506FA7A217C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skaitykla.EF", "Skaitykla.EF\Skaitykla.EF.csproj", "{DCB2DD5C-A2C0-496E-9570-19D9ACD294C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skaitykla.EF", "Skaitykla.EF\Skaitykla.EF.csproj", "{DCB2DD5C-A2C0-496E-9570-19D9ACD294C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skaitykla.Services", "Skaitykla.Services\Skaitykla.Services.csproj", "{E159D86A-5439-4351-9C70-20B091E19971}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +29,13 @@ Global
 		{DCB2DD5C-A2C0-496E-9570-19D9ACD294C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB2DD5C-A2C0-496E-9570-19D9ACD294C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB2DD5C-A2C0-496E-9570-19D9ACD294C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E159D86A-5439-4351-9C70-20B091E19971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E159D86A-5439-4351-9C70-20B091E19971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E159D86A-5439-4351-9C70-20B091E19971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E159D86A-5439-4351-9C70-20B091E19971}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B8208355-89B0-45EC-BA78-2506FA7A217C} = {E1FC5A12-82B4-491E-B28C-C0E42AAA6339}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9546202-E084-45B5-A934-711F645849AE}

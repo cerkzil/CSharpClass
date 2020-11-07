@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Skaitykla.EF;
+using Skaitykla.Services;
+using Skaitykla.Services.Interfaces;
 
 namespace Skaitykla.MVC
 {
@@ -16,6 +18,8 @@ namespace Skaitykla.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookContext>();
+            services.AddTransient<IAuthorService, AuthorService>();
+            services.AddTransient<IBookService, BookService>();
             services.AddMvc();
         }
 

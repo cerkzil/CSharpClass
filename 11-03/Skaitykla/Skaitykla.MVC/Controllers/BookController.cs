@@ -1,38 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.Language;
 using Skaitykla.Domains;
-using Skaitykla.EF;
 using Skaitykla.MVC.Models;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+using Skaitykla.Services.Interfaces;
 
 namespace Skaitykla.MVC.Controllers
 {
     public class BookController : Controller
     {
-        private readonly BookContext _db;
+        private readonly IBookService _bookService;
+        private readonly IAuthorService _authorService;
 
-        public BookController(BookContext db)
+        public BookController(IBookService bookService, IAuthorService authorService)
         {
-            _db = db;
+            _bookService = bookService;
+            _authorService = authorService;
         }
-
 
         public IActionResult Index()
         {
-            var manoKnygos = _db.Books.ToList();
-            return View(manoKnygos);
+            return View(_bookService.GetBooks());
         }
 
         [HttpGet]
         public IActionResult NewBook()
         {
-            var authorList = _db.Authors.ToList();
-
-            return View(authorList);
+            return View(_authorService.GetAuthors());
         }
 
 
@@ -48,12 +40,10 @@ namespace Skaitykla.MVC.Controllers
             var myNewBook = new Book
             {
                 Title = model.Title,
-                Author = _db.Authors.Where(x => x.Id == model.AuthorId).Single()
-
+                Author = _authorService.GetAuthorById(model.AuthorId)
             };
 
-            _db.Books.Add(myNewBook);
-            _db.SaveChanges();
+            _bookService.CreateBook(myNewBook);
 
             return RedirectToAction("NewBook");
         }

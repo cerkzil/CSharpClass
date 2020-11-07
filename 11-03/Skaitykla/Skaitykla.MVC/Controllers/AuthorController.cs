@@ -1,27 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Skaitykla.Domains;
-using Skaitykla.EF;
+using Microsoft.Extensions.Logging;
+using Skaitykla.Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Skaitykla.MVC.Controllers
 {
     public class AuthorController : Controller
     {
-        private readonly BookContext _db;
 
-        public AuthorController(BookContext db)
+        private readonly IAuthorService _service;
+        private readonly ILogger<AuthorController> _logger;
+        public AuthorController(IAuthorService service, ILogger<AuthorController> logger)
         {
-            _db = db;
+            _service = service;
+            _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            
-            return View(_db.Authors.Include(x=>x.WrittenBooks));
+            return View(_service.GetAuthors());
         }
 
         [HttpGet]
@@ -33,28 +31,27 @@ namespace Skaitykla.MVC.Controllers
         [HttpPost]
         public IActionResult CreateAuthor(string name, string surname)
         {
-            var newAuthor = new Author(name, surname);
+            try
+            {
+                _service.CreateAuthorAsync(name, surname);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to create Author", ex);
+                return RedirectToAction("error");
+            }
 
-            newAuthor.WrittenBooks.Add(new Book() { Title = "Pasakos", PageCount = 100 });
-
-            _db.Authors.Add(newAuthor);
-            _db.SaveChanges();
-
-
-            return View();
+            return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+            return View(_service.GetAuthorById(id));
+        }
+
         public IActionResult Delete(Guid id)
         {
-            var author = _db.Authors.Where(x => x.Id == id).Single();
-            var books = _db.Books.Where(x => x.Author == author).ToList();
-            foreach (Book item in books){
-                _db.Books.Remove(item);
-            }
-            _db.Authors.Remove(author);
-            _db.SaveChanges();
-
+            _service.DeleteAuthorAsync(id);
             return RedirectToAction("Index");
         }
     }
