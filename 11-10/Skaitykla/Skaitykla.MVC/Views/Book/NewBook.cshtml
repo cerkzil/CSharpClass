@@ -1,0 +1,28 @@
+﻿@using Skaitykla.Domains
+@model IEnumerable<Author>
+
+@{
+    ViewData["Title"] = "NewBook";
+}
+
+<h2>Enter new Book</h2>
+
+<form method="post" asp-action="NewBook" asp-controller="Book">
+    <div class="form-group">
+        <label for="formGroupExampleInput">Book Title</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="enter new book title here" name="Title">
+    </div>
+
+    <div class="form-group ">
+        <label for="inputState">Author</label>
+        <select id="inputState" class="form-control" name="AuthorId">
+            <option selected>Choose...</option>
+            
+            @foreach (var author in Model)
+            {
+                <option value="@author.Id">@author.Name @author.Surname</option>
+            }
+        </select>
+    </div>
+    <button type="submit">Create</button>
+</form>

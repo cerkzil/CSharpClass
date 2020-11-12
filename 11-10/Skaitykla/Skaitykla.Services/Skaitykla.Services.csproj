@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Skaitykla.Domains\Skaitykla.Domains.csproj" />
+    <ProjectReference Include="..\Skaitykla.EF\Skaitykla.EF.csproj" />
+  </ItemGroup>
+
+</Project>
