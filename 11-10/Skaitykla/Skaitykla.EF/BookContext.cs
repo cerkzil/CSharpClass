@@ -11,9 +11,7 @@ namespace Skaitykla.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-BBFEDD6;" +
-                                        "Database=coreDB;" +
-                                        "Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server = localhost; Database = coreDB; Trusted_Connection = True;");
         }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

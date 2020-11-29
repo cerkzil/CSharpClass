@@ -10,8 +10,8 @@ using Skaitykla.EF;
 namespace Skaitykla.EF.Migrations
 {
     [DbContext(typeof(BookContext))]
-    [Migration("20201112083844_Books")]
-    partial class Books
+    [Migration("20201118094147_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

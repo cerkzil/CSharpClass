@@ -15,7 +15,7 @@ namespace Skaitykla.MVC.Models
         
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(10)]
+        [StringLength(26)]
         public string Password { get; set; }
     }
 }
